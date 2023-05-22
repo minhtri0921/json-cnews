@@ -26,10 +26,6 @@
           <form action="#" method="post" id="contactform">
             <ol>
               <li>
-                <label for="name">Tên tin*</label>
-                <input id="name" name="name" class="text" />
-              </li>
-              <li>
                 <label for="preview_text">Mô tả*</label>
                 <textarea id="preview_text" name="preview_text" rows="6" cols="50"></textarea>
               </li>
@@ -37,6 +33,20 @@
               <li>
                 <label for="detail_text">Chi tiết*</label>
                 <textarea id="detail_text" name="detail_text" rows="10" cols="50"></textarea>
+              </li>
+
+              <li>
+                <label for="detail_text">Danh mục tin*</label>
+                <select name="gender">
+                  <option value="-1">-- Chọn danh mục --</option>
+                  <option value="1">Nam</option>
+                  <option value="0">Nữ</option>
+                </select>
+              </li>
+
+              <li>
+                <label for="detail_text">Hình ảnh</label>
+                <input type="file" name="picture" value="" />
               </li>
 
               <li class="buttons">
@@ -55,6 +65,8 @@
 
     <div class="footer"></div>
   </div>
+  <script src="lib/axios.min.js"></script>
+  <script src="js/add.js"></script>
 </body>
 
 </html>
