@@ -12,26 +12,18 @@ var cId = getParameterByName('cid');
 async function getData() {
     const listNewsElement = $("#list-news-by-cat");
     try {
-        var listCat = await axios.get('http://localhost:3000/ccategories');
+        var catById = await axios.get(`http://localhost:3000/cat/catbyid?id=${cId}`);
+        catById = catById.data;
 
-        listCat = listCat.data;
-
-        var catName = listCat.find(function (cat) {
-            return cat.id === cId;
-        }).name;
+        var catName = catById.name;
 
         var h1Element = $('<h1></h1>');
-
         h1Element.text(catName);
 
         listNewsElement.append(h1Element);
 
-        var listNews = await axios.get('http://localhost:3000/cnews');
-        listNews = listNews.data;
-
-        var listNewsByCat = listNews.filter(function (news) {
-            return news.catId === cId;
-        })
+        var listNewsByCat = await axios.get(`http://localhost:3000/news/newsbycat?cid=${cId}`);
+        listNewsByCat = listNewsByCat.data;
 
         listNewsByCat.forEach(function (news) {
             const newsElement = $('<div class="item"></div>');

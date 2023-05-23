@@ -5,9 +5,9 @@ const newsController = require('../controllers/NewsController');
 const middleware = require('../middleware/Middleware');
 
 router.get('/', newsController.getListNews);
-// router.get('/newsbycat', newsController.getListNewsByCat);
-// router.get('/newsbyid', newsController.getNewsById);
+router.get('/newsbycat', newsController.getListNewsByCat);
+router.get('/newsbyid', newsController.getNewsById);
 
-// router.post('/contact', middleware.uploadFile, newsController.postContact);
+router.post('/add', middleware.uploadFile, newsController.postAddNews);
 
 module.exports = router;

@@ -4,7 +4,7 @@ const fs = require('fs');
 class Middleware {
 
     uploadFile(req, res, next) {
-        const dirUpload = 'client/avatar';
+        const dirUpload = 'client/images';
         if (!fs.existsSync(dirUpload)) fs.mkdirSync(dirUpload);
         const form = new formidable.IncomingForm();
         form.uploadDir = dirUpload;
@@ -38,7 +38,7 @@ class Middleware {
                         });
                     })
 
-                    formData[key] = filenameStored.slice(7);
+                    formData[key] = filenameStored.slice(14);
                 } else {
                     formData[key] = '';
                 }

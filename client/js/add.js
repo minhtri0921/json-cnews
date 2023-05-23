@@ -14,7 +14,7 @@ form.on("submit", async function (e) {
 
     var results = await axios({
         method: "POST",
-        url: "http://localhost:3000/news/contact",
+        url: "http://localhost:3000/news/add",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
     });

@@ -1,16 +1,30 @@
-const Category = require("../model/category.js");
+const mysql = require('mysql');
+
+const configDB = {
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "cnews"
+};
 
 class CategoryController {
 
     // [GET] /cat
     async getListCats(req, res) {
         try {
-            const listCats = await Category.find();
+            var conn = mysql.createConnection(configDB);
+
+            const listCats = await new Promise((resolve, reject) => {
+                conn.query(`SELECT * FROM categories`, (err, row) => {
+                    if (err) reject(err);
+                    resolve(row);
+                })
+            })
             res.status(200).json(listCats);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            // db.close();
+            conn.end();
         }
     }
 
@@ -18,12 +32,19 @@ class CategoryController {
     async getCatDetail(req, res) {
         var id = req.query.id;
         try {
-            const catById = await Category.findOne({ id });
-            res.status(200).json(catById);
+            var conn = mysql.createConnection(configDB);
+
+            const catById = await new Promise((resolve, reject) => {
+                conn.query(`SELECT * FROM categories WHERE id = ${id}`, (err, row) => {
+                    if (err) reject(err);
+                    resolve(row);
+                })
+            })
+            res.status(200).json(catById[0]);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            // db.close();
+            conn.end();
         }
     }
 }
