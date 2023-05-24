@@ -23,6 +23,7 @@
       <div class="body_resize">
         <div class="left">
           <h2>Đăng tin</h2>
+          <p id="error"></p>
           <form action="#" method="post" id="contactform">
             <ol>
               <li>
@@ -36,17 +37,15 @@
               </li>
 
               <li>
-                <label for="detail_text">Danh mục tin*</label>
-                <select name="gender">
-                  <option value="-1">-- Chọn danh mục --</option>
-                  <option value="1">Nam</option>
-                  <option value="0">Nữ</option>
+                <label for="cat">Danh mục tin*</label>
+                <select id="cat" name="cat">
+                  <option value="">-- Chọn danh mục --</option>
                 </select>
               </li>
 
               <li>
-                <label for="detail_text">Hình ảnh</label>
-                <input type="file" name="picture" value="" />
+                <label for="picture">Hình ảnh</label>
+                <input type="file" name="picture" id="picture" value="" />
               </li>
 
               <li class="buttons">
@@ -61,7 +60,6 @@
         <div class="clr"></div>
       </div>
     </div>
-
 
     <div class="footer"></div>
   </div>

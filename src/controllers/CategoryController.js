@@ -20,9 +20,9 @@ class CategoryController {
                     resolve(row);
                 })
             })
-            res.status(200).json(listCats);
+            res.status(200).send(listCats);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             conn.end();
         }
@@ -40,9 +40,9 @@ class CategoryController {
                     resolve(row);
                 })
             })
-            res.status(200).json(catById[0]);
+            res.status(200).send(catById[0]);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             conn.end();
         }

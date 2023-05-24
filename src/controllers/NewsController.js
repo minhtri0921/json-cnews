@@ -71,16 +71,15 @@ class NewsController {
 
     // [POST] /news/add
     async postAddNews(req, res) {
-        const { description, detail, file } = req.form_data;
+        const { description, detail, file, cat } = req.form_data;
         try {
             var conn = mysql.createConnection(configDB);
+            if (!description || !detail || !cat) throw new Error('Lỗi nhập!');
 
             var data = await new Promise((resolve, reject) => {
-                conn.query(`INSERT INTO news (description, detail, image) VALUES
-                ('${description}', '${detail}', '${file}')`, function (err, result) {
-                    if (err) {
-                        reject(err);
-                    }
+                conn.query(`INSERT INTO news (description, detail, image, cat_id) VALUES
+                ('${description}', '${detail}', '${file}', '${cat}')`, function (err, result) {
+                    if (err) reject(err);
                     resolve(result);
                 });
             })
