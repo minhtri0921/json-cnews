@@ -1,6 +1,6 @@
-var form = $('#contactform');
+var form = $('#news-form');
 
-async function showCatList() {
+async function showListCat() {
     const selectElement = $('select[name="cat"]');
     var listCat = await axios.get('http://localhost:3000/cat');
     listCat.data.forEach(function (cat) {
@@ -8,7 +8,7 @@ async function showCatList() {
         selectElement.append(htmlOptions);
     })
 }
-showCatList();
+showListCat();
 
 form.on("submit", async function (e) {
     e.preventDefault();
